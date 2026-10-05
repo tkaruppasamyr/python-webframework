@@ -41,6 +41,7 @@ pip install asyncpg
 pip install passlib
 pip install bcrypt
 pip install argon2_cffi
+pip install "python-jose[cryptography]"
 ```
 
 
@@ -61,7 +62,16 @@ config.set_main_option("sqlalchemy.url", SQLALCHEMY_DATABASE_URL)
 
 target_metadata = Base.metadata
 ```
-3. Generating Migrations from Models
+
+3. If creating New Table 
+
+```plaintext
+
+1. Create Model
+2. model files added to env.py
+
+```
+4. Generating Migrations from Models
 
 ```bash
 
@@ -69,7 +79,7 @@ alembic revision --autogenerate -m "first migration"
 
 ```
 
-4. Run Migrations
+5. Run Migrations
 
 ```bash
 

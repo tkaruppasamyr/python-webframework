@@ -29,3 +29,35 @@ async def get_db():
         finally:
             await db.close()
 
+
+# Raw Sql Database Connection
+from psycopg2 import connect,pool
+db_raw_passwd = quote_plus("datasciencepassword")
+RAW_DATABASE_URL = f"postgresql://datascience:{db_raw_passwd}@172.21.0.3:5432/datasciencecsv"
+
+db_pool = pool.ThreadedConnectionPool(
+    minconn=1,
+    maxconn=10,
+    dsn=RAW_DATABASE_URL
+)
+
+
+
+@contextmanager
+def get_db_raw():
+
+    conn_raw = db_pool.getconn()
+    try:
+        cursor = conn_raw.cursor()
+
+        try:
+            yield cursor
+            conn_raw.commit()
+        except Exception as e:
+            conn_raw.rollback()
+            raise
+        finally:
+            cursor.close()
+    finally:
+        db_pool.putconn(conn_raw)
+

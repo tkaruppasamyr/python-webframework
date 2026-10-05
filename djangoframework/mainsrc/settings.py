@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+from mainsrc import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,12 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)=s+qsoe^%()rjx22qxk_afbl*)o3h8)!qwbrpc!@zyvvb$4(#'
+SECRET_KEY = config["django"]["secret_key"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config["django"]["Debug"]
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config["django"]["AllowedHosts"]
 
 
 # Application definition
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "corsheaders",
     "channels",
+    'coreutils',
     'rest_framework',
     'usermanagement',
     'websocket',
@@ -62,7 +64,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 'core.middleware.logging.SimpleMiddleware',
     'core.docker.container.ContainerMiddleware',
-    # 'core.middleware.timingmiddleware.AsyncTimingMiddleware',
+    'core.middleware.timingmiddleware.AsyncTimingMiddleware',
 ]
 
 
@@ -130,11 +132,11 @@ CHANNEL_LAYERS = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': "djangomydb",
-        'HOST': "172.21.0.3",
-        'PORT': "5432",
-        'USER': "djangouser",
-        'PASSWORD': "djangomypassword",
+        'NAME': config["django_db"]["db_defaults"]["NAME"],
+        'HOST': config["django_db"]["db_defaults"]["HOST"],
+        'PORT': config["django_db"]["db_defaults"]["PORT"],
+        'USER': config["django_db"]["db_defaults"]["USER"],
+        'PASSWORD': config["django_db"]["db_defaults"]["PASSWORD"],
 
         'TEST': {
             'ENGINE': 'django.db.backends.sqlite3',

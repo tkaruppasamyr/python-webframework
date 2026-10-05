@@ -60,12 +60,21 @@ import websocket.routing
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mainsrc.settings')
 
+# application = ProtocolTypeRouter({
+#     "http": get_asgi_application(),
+#     "websocket": AuthMiddlewareStack(
+#         URLRouter(
+#             websocket.urls.testingwebsocket+
+#             websocket.routing.websocket_urlpatterns
+#         )
+#     ),
+# })
+
+
 application = ProtocolTypeRouter({
     "http": get_asgi_application(),
-    "websocket": AuthMiddlewareStack(
-        URLRouter(
+    "websocket": URLRouter(
             websocket.urls.testingwebsocket+
             websocket.routing.websocket_urlpatterns
         )
-    ),
 })

@@ -11,6 +11,7 @@ sys.path.append(os.path.abspath(os.getcwd()))
 from database import SQLALCHEMY_DATABASE_URL,Base
 from src.users import user_models
 from src.auth import auth_models
+from src.datascience import ds_models
 
 
 # this is the Alembic Config object, which provides

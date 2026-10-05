@@ -1,8 +1,8 @@
-"""user and employee table mirations
+"""datascien model creating
 
-Revision ID: 3a8110403025
-Revises: 0db4c2169169
-Create Date: 2026-01-22 18:41:24.476120
+Revision ID: f76944c6d66c
+Revises: fe4d2bcf3051
+Create Date: 2026-08-08 20:21:07.553510
 
 """
 from typing import Sequence, Union
@@ -12,8 +12,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '3a8110403025'
-down_revision: Union[str, Sequence[str], None] = '0db4c2169169'
+revision: str = 'f76944c6d66c'
+down_revision: Union[str, Sequence[str], None] = 'fe4d2bcf3051'
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 

@@ -1,0 +1,16 @@
+django:
+  
+  Debug: true
+  AllowedHosts:
+    - localhost
+    - 127.0.0.1
+  secret_key: 'django-insecure-)=s+qsoe^%()rjx22qxk_afbl*)o3h8)!qwbrpc!@zyvvb$4(#'
+
+django_db:
+  db_defaults:
+    NAME: 'djangomydb'
+    USER: 'fullstackdev'
+    PASSWORD: 'fullStackpass123&'
+    HOST: '172.21.0.3'
+    PORT: '5432'
+
